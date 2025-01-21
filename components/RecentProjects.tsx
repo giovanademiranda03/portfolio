@@ -31,9 +31,9 @@ const RecentProjects = () => {
                 <Image
                   src={item.img}
                   alt="cover"
-                  objectFit="cover"
-                  layout="fill"
-                  className="z-10 absolute bottom-0 rounded-xl object-cover w-fit"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="z-10 absolute bottom-0 rounded-xl object-cover  w-full"
                 />
               </div>
 

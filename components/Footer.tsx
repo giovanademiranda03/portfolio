@@ -17,6 +17,7 @@ const Footer = () => {
           width={500}
           height={500}
           className="w-full h-full opacity-50 "
+          priority
         />
       </div>
 
@@ -47,7 +48,13 @@ const Footer = () => {
           {socialMedia.map((info) => (
             <Link key={info.id} href={info.link}>
               <div className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300">
-                <Image src={info.img} alt="icons" width={20} height={20} />
+                <Image
+                  src={info.img}
+                  alt="icons"
+                  width={20}
+                  height={20}
+                  className="w-[20px] h-[20px]"
+                />
               </div>
             </Link>
           ))}

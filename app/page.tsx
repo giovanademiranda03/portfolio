@@ -6,26 +6,6 @@ import Hero from "@/components/Hero";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
-import dynamic from "next/dynamic";
-
-const ClientOnlyComponent = dynamic(
-  () => import("../components/ClientOnlyComponent"),
-  { ssr: false }
-);
-
-export const revalidate = 60;
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  const res = await fetch("https://giovana-portfolio.vercel.app").then((res) =>
-    res.json()
-  );
-
-  return {
-    props: { res },
-    revalidate: 60,
-  };
-}
 
 export default function Home() {
   return (
@@ -34,11 +14,10 @@ export default function Home() {
         <FloatingNav navItems={navItems} />
         <Hero />
         <Grid />
-        <RecentProjects />
+        {/* <RecentProjects />
         <Experience />
         <Approach />
-        <Footer />
-        <ClientOnlyComponent />
+        <Footer /> */}
       </div>
     </main>
   );

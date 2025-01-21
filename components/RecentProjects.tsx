@@ -26,19 +26,14 @@ const RecentProjects = () => {
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
-                  <Image
-                    src="/bg.png"
-                    alt="bgimg"
-                    layout="fill"
-                    objectFit="cover"
-                  />
+                  <Image src="/bg.png" alt="bgimg" width={500} height={500} />
                 </div>
                 <Image
                   src={item.img}
                   alt="cover"
-                  layout="fill"
                   objectFit="cover"
-                  className="z-10 absolute bottom-0 rounded-xl"
+                  layout="fill"
+                  className="z-10 absolute bottom-0 rounded-xl object-cover w-fit"
                 />
               </div>
 
@@ -70,8 +65,8 @@ const RecentProjects = () => {
                         src={icon}
                         alt="icon5"
                         className="p-2"
-                        layout="fill"
-                        objectFit="cover"
+                        width={500}
+                        height={500}
                       />
                     </div>
                   ))}

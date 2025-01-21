@@ -13,12 +13,16 @@ const ClientOnlyComponent = dynamic(
   { ssr: false }
 );
 
-export async function getStaticProps() {
-  const res = await fetch("https://giovana-portfolio.vercel.app");
-  const data = await res.json();
+export const revalidate = 60;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const res = await fetch("https://giovana-portfolio.vercel.app").then((res) =>
+    res.json()
+  );
 
   return {
-    props: { data },
+    props: { res },
     revalidate: 60,
   };
 }

@@ -13,6 +13,16 @@ const ClientOnlyComponent = dynamic(
   { ssr: false }
 );
 
+export async function getStaticProps() {
+  const res = await fetch("https://giovana-portfolio.vercel.app");
+  const data = await res.json();
+
+  return {
+    props: { data },
+    revalidate: 60,
+  };
+}
+
 export default function Home() {
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">

@@ -6,6 +6,12 @@ import Hero from "@/components/Hero";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
+import dynamic from "next/dynamic";
+
+const ClientOnlyComponent = dynamic(
+  () => import("../components/ClientOnlyComponent"),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -18,6 +24,7 @@ export default function Home() {
         <Experience />
         <Approach />
         <Footer />
+        <ClientOnlyComponent />
       </div>
     </main>
   );

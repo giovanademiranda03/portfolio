@@ -72,6 +72,28 @@ export function Globe({ globeConfig, data }: WorldProps) {
     | null
   >(null);
 
+  const validateData = (data: Position[]) => {
+    return data.every(
+      ({ startLat, startLng, endLat, endLng }) =>
+        startLat >= -90 &&
+        startLat <= 90 &&
+        startLng >= -180 &&
+        startLng <= 180 &&
+        endLat >= -90 &&
+        endLat <= 90 &&
+        endLng >= -180 &&
+        endLng <= 180 &&
+        !isNaN(startLat) &&
+        !isNaN(startLng) &&
+        !isNaN(endLat) &&
+        !isNaN(endLng)
+    );
+  };
+
+  if (!validateData(data)) {
+    console.error("Os dados de posição contêm valores inválidos.");
+  }
+
   const globeRef = useRef<ThreeGlobe | null>(null);
 
   const defaultProps = {
@@ -150,19 +172,15 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   useEffect(() => {
     if (globeRef.current && globeData) {
-      globeRef.current
-        .hexPolygonsData(countries.features)
-        .hexPolygonResolution(3)
-        .hexPolygonMargin(0.7)
-        .showAtmosphere(defaultProps.showAtmosphere)
-        .atmosphereColor(defaultProps.atmosphereColor)
-        .atmosphereAltitude(defaultProps.atmosphereAltitude)
-        .hexPolygonColor((e) => {
-          return defaultProps.polygonColor;
-        });
-      startAnimation();
+      try {
+        globeRef.current
+          .hexPolygonsData(countries.features)
+          .hexPolygonResolution(3)
+          .hexPolygonMargin(0.7);
+      } catch (error) {
+        console.error("Erro ao configurar o ThreeGlobe:", error);
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globeData]);
 
   const startAnimation = () => {

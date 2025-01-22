@@ -23,7 +23,7 @@ const RecentProjects = () => {
             <PinContainer title={item.link} href={item.link}>
               <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
                 <div
-                  className="relative w-full h-full overflow-hidden lg:rounded-3xl"
+                  className="relative w-full h-full overflow-hidden rounded-3xl"
                   style={{ backgroundColor: "#13162D" }}
                 >
                   <Image
@@ -81,7 +81,7 @@ const RecentProjects = () => {
                 <div className="flex justify-center items-center">
                   <Link target="_blank" href={item.link}>
                     <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                      Check Live Site
+                      Visit the site
                     </p>
                   </Link>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />

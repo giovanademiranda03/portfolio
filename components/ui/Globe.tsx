@@ -245,11 +245,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globeRef.current, globeData]);
 
-  return (
-    <>
-      <threeGlobe ref={globeRef} />
-    </>
-  );
+  return <>{typeof window !== "undefined" && <threeGlobe ref={globeRef} />}</>;
 }
 
 export function WebGLRendererConfig() {

@@ -193,20 +193,29 @@ const ShaderMaterial = ({
   let lastFrameTime = 0;
 
   useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const timestamp = clock.getElapsedTime();
-    if (timestamp - lastFrameTime < 1 / maxFps) {
-      return;
-    }
-    lastFrameTime = timestamp;
+    if (typeof window !== "undefined" && ref.current) {
+      const timestamp = clock.getElapsedTime();
+      if (timestamp - lastFrameTime < 1 / maxFps) {
+        return;
+      }
+      lastFrameTime = timestamp;
 
-    const material: any = ref.current.material;
-    const timeLocation = material.uniforms.u_time;
-    timeLocation.value = timestamp;
+      const material: any = ref.current.material;
+      const timeLocation = material.uniforms.u_time;
+      timeLocation.value = timestamp;
+    }
   });
 
   const getUniforms = () => {
-    const preparedUniforms: any = {};
+    const preparedUniforms: any = {
+      u_time: { value: 0, type: "1f" },
+      u_resolution: {
+        value:
+          typeof window !== "undefined"
+            ? new THREE.Vector2(size.width * 2, size.height * 2)
+            : new THREE.Vector2(0, 0),
+      },
+    };
 
     for (const uniformName in uniforms) {
       const uniform: any = uniforms[uniformName];
@@ -287,8 +296,10 @@ const ShaderMaterial = ({
 };
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
+  if (typeof window === "undefined") return null;
+
   return (
-    <Canvas className="absolute inset-0  h-full w-full">
+    <Canvas className="absolute inset-0 h-full w-full">
       <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
     </Canvas>
   );

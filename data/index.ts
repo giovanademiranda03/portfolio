@@ -16,18 +16,9 @@ export const gridItems = [
     img: "/b1.svg",
     spareImg: "",
   },
+
   {
     id: 2,
-    title: "Flexible communication across time zones",
-    description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
-    imgClassName: "",
-    titleClassName: "justify-start",
-    img: "",
-    spareImg: "",
-  },
-  {
-    id: 3,
     title: "My tech stack",
     description: "I constantly try to improve",
     className: " text-nowrap lg:col-span-2 md:col-span-3 md:row-span-2",
@@ -37,7 +28,7 @@ export const gridItems = [
     spareImg: "",
   },
   {
-    id: 4,
+    id: 3,
     title: "Passionate about responsive design and UI/UX",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
@@ -47,7 +38,7 @@ export const gridItems = [
     spareImg: "/b4.svg",
   },
   {
-    id: 5,
+    id: 4,
     title: "Developing innovative solutions: currently a JS animation library",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
@@ -57,10 +48,10 @@ export const gridItems = [
     spareImg: "/grid.svg",
   },
   {
-    id: 6,
+    id: 5,
     title: "Let’s bring your vision to life. Start your project with me!",
     description: "",
-    className: "lg:col-span-5 md:col-span-6 md:row-span-1",
+    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center md:max-w-full max-w-60 text-center",
     img: "",

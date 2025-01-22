@@ -2,14 +2,6 @@
 
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import dynamic from "next/dynamic";
-
-const CanvasRevealEffect = dynamic(
-  () => import("./ui/CanvasRevealEffect").then((m) => m.CanvasRevealEffect),
-  {
-    ssr: false,
-  }
-);
 
 const Approach = () => {
   return (
@@ -22,38 +14,17 @@ const Approach = () => {
           title="Planning & Strategy"
           icon={<AceternityIcon order="Phase 1" />}
           des="In this phase, I analyze functional and non-functional requirements, collaborating to define the website's goals, target audience, and essential features. I create detailed user stories, propose the site structure, navigation, and content needs."
-        >
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-            containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
-          />
-        </Card>
+        />
         <Card
           title="Prototyping & Design System"
           icon={<AceternityIcon order="Phase 2" />}
           des="Based on the planning, I develop high-fidelity prototypes that reflect UX/UI principles. I create consistent design systems, color palettes, and responsive designs to guide development and ensure a seamless user experience."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
-            colors={[
-              [255, 166, 158],
-              [221, 255, 247],
-            ]}
-            dotSize={2}
-          />
-        </Card>
+        />
         <Card
           title="Development & Launch"
           icon={<AceternityIcon order="Phase 3" />}
           des="With the design approved, I build the project using Next.js 14, TypeScript, and Tailwind CSS, ensuring clean and responsive code. I conduct E2E automated testing with Cypress to ensure quality before the launch."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
+        />
       </div>
     </section>
   );
@@ -64,25 +35,26 @@ export default Approach;
 const Card = ({
   title,
   icon,
-  children,
   des,
 }: {
   title: string;
   icon: React.ReactNode;
-  children?: React.ReactNode;
   des: string;
 }) => {
   const [hovered, setHovered] = React.useState(false);
+
+  const backgroundColor = hovered
+    ? "linear-gradient(90deg, rgba(133, 39, 245, 0.8) 0%, rgba(75, 0, 130, 1) 100%)"
+    : "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)";
+
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center
-       dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] rounded-3xl "
+      className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] rounded-3xl"
       style={{
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        background: backgroundColor,
+        transition: "background-color 0.3s ease",
       }}
     >
       <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
@@ -96,9 +68,7 @@ const Card = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="h-full w-full absolute inset-0"
-          >
-            {children}
-          </motion.div>
+          ></motion.div>
         )}
       </AnimatePresence>
 
@@ -128,10 +98,11 @@ const Card = ({
     </div>
   );
 };
+
 const AceternityIcon = ({ order }: { order: string }) => {
   return (
     <div>
-      <button className="relative inline-flex overflow-hidden rounded-full p-[1px] ">
+      <button className="relative inline-flex overflow-hidden rounded-full p-[1px]">
         <span
           className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
          bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"

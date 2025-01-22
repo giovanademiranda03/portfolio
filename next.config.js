@@ -1,11 +1,6 @@
 // @ts-check
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: "export",
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
-};
+const nextConfig = {};
 
 module.exports = nextConfig;

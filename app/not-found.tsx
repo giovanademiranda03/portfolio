@@ -5,7 +5,8 @@ import { FaLocationArrow } from "react-icons/fa6";
 
 export default function NotFound() {
   return (
-    <div className="pb-20 pt-36">
+  <main className="relative h-screen bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto sm:px-10 px-5 pb-20 pt-36">
+      <div className="max-w-7xl w-full h-full bg-black-100 ">
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -53,6 +54,7 @@ export default function NotFound() {
           </a>
         </div>
       </div>
-    </div>
+      </div>
+    </main>
   );
 }
